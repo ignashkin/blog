@@ -15,6 +15,20 @@ public class Post {
     private String tag;
     private String author;
 
+    public Post() {
+    }
+
+    public Post(String title, String text) {
+        this.title = title;
+        this.text = text;
+    }
+
+    public Post(String title, String text, String tag) {
+        this.title = title;
+        this.text = text;
+        this.tag = tag;
+    }
+
     public Integer getId() {
         return id;
     }

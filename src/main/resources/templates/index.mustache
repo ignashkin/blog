@@ -5,7 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div>Тут что то происходит</div>
+<div>
+    {{#posts}}
+            <div>
+                <b>{{title}}</b>
+                <span>{{text}}</span>
+
+            </div>
+    {{/posts}}
+</div>
 <a href="/create">Create page</a>
 </body>
 </html>
