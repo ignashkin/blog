@@ -1,8 +1,7 @@
 package com.egor.blog.controller;
+
 import com.egor.blog.domain.Post;
-import com.egor.blog.domain.User;
 import com.egor.blog.repo.PostRepository;
-import com.egor.blog.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
