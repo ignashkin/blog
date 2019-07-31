@@ -1,8 +1,10 @@
 package com.egor.blog.controller;
 
 import com.egor.blog.domain.Post;
+import com.egor.blog.domain.User;
 import com.egor.blog.repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +27,12 @@ public class MainController {
     }
 
     @PostMapping("/create")
-    public String addPost(@RequestParam String title, @RequestParam String text, Map<String, Object> model) {
-        Post post = new Post(title,text);
+    public String addPost(
+            @AuthenticationPrincipal User user,
+            @RequestParam String title,
+            @RequestParam String text,
+            @RequestParam String tag, Map<String, Object> model) {
+        Post post = new Post(title,text, tag, user);
         postRepository.save(post);
         return "redirect:/";
 

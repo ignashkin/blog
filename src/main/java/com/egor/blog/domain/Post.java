@@ -1,9 +1,6 @@
 package com.egor.blog.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Post {
@@ -13,20 +10,23 @@ public class Post {
     private String title;
     private String text;
     private String tag;
-    private String author;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     public Post() {
     }
 
-    public Post(String title, String text) {
-        this.title = title;
-        this.text = text;
-    }
-
-    public Post(String title, String text, String tag) {
+    public Post(String title, String text, String tag, User user) {
+        this.author = user;
         this.title = title;
         this.text = text;
         this.tag = tag;
+    }
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<none>";
     }
 
     public Integer getId() {
@@ -54,18 +54,18 @@ public class Post {
     }
 
     public String getTag() {
-        return tag;
+        return tag != null ? this.tag : "<none>";
     }
 
     public void setTag(String tag) {
         this.tag = tag;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 }
