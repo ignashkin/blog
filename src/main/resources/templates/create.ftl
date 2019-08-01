@@ -19,5 +19,6 @@
         <button type="submit"  class="btn btn-primary">Добавить</button>
     </form>
 <@l.logout/>
+<span><a href="/user"> User list</a></span>
 </div>
 </@c.page>
