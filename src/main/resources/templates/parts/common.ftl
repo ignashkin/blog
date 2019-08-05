@@ -11,11 +11,18 @@
     <title>BLOG</title>
 </head>
 <body>
-<div class="container">
-
 <#include "navbar.ftl">
 <div class="container mt-5">
-    <#nested>
+    <div class="row">
+        <#nested>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4> Возможно тут будет навигация</h4>
+                <a class="btn btn-primary" href="/create">Create post</a>
+                <p>Я не знаю какими качествами надо обладать, что бы полюбить фронтэнд</p>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -1,9 +1,8 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
 <@c.page>
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <h1>Create post</h1>
+<div class="col-sm-8">
+    <h1>Create post</h1>
     <form method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <div class="form-group">
@@ -26,7 +25,7 @@
             </button>
         </div>
     </form>
-<@l.logout/>
-<span><a href="/user"> User list</a></span>
+    <@l.logout/>
+    <span><a href="/user"> User list</a></span>
 </div>
 </@c.page>
