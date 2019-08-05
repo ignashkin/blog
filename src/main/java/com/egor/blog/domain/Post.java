@@ -1,5 +1,7 @@
 package com.egor.blog.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String title;
+    @Lob
     private String text;
     private String tag;
 
