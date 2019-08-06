@@ -3,7 +3,7 @@
 <@c.page>
 <div class="col-sm-8">
     <h1>Create post</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <div class="form-group">
             <label for="title">Заголовок</label>
@@ -12,6 +12,10 @@
         <div class="form-group">
             <label for="description">Текст</label>
             <textarea rows="15" class="form-control" name="text" ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="description">Файл</label>
+            <input type="file" class="form-control" name="file" />
         </div>
         <div class="form-group">
             <label for="InputTag">Тэги</label>

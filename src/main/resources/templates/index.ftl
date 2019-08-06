@@ -11,6 +11,11 @@
         <h2 class="blog-post-title">${post.title}</h2>
         <p class="blog-post-meta">${post.authorName}</p>
         <p>${post.text}</p>
+        <div>
+            <#if post.filename??>
+        <img src="/img/${post.filename}">
+        </#if>
+        </div>
         <span class="blog-post-meta">${post.tag}</span>
         <hr/>
     </div>

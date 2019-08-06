@@ -16,8 +16,10 @@
                 <li class="nav-item"><a href="/create">Create Post</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li  class="navbar-text">${name}</li>
-                <#if known>
+                <#if user??>
+                <li  class="nav-item"><a href="/user/profile">${name}</a></li>
+                </#if>
+                 <#if known>
                 <li class="nav-item"><@l.logout/></li>
                 <#else>
                 <li class="nav-item"><a href="/login" class="btn btn-default">Войти</a></li>
