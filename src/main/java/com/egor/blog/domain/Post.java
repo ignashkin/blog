@@ -3,6 +3,7 @@ package com.egor.blog.domain;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Post {
@@ -11,6 +12,7 @@ public class Post {
     private Long id;
     private String title;
     @Lob
+    @NotBlank (message = "Введите ваш текст")
     private String text;
     private String tag;
 

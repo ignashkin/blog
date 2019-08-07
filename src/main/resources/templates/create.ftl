@@ -9,9 +9,15 @@
             <label for="title">Заголовок</label>
             <input type="text" class="form-control" name="title" required  placeholder="Заголовок"/>
         </div>
-        <div class="form-group">
+        <div class="form-group ${(textError??)?string('has-error','')}">
             <label for="description">Текст</label>
-            <textarea rows="15" class="form-control" name="text" ></textarea>
+            <textarea rows="15" class="form-control"
+                      value="<#if post??>${post.text} </#if>" name="text" ></textarea>
+            <#if textError??>
+            <span class="help-block">
+                ${textError}
+            </span>
+            </#if>
         </div>
         <div class="form-group">
             <label for="description">Файл</label>
