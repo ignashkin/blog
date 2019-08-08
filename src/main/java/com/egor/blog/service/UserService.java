@@ -26,7 +26,11 @@ public class  UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Пользователь не найден");
+        }
+        return user;
     }
 
     public boolean addUser(User user) {
@@ -63,7 +67,7 @@ public class  UserService implements UserDetailsService {
             return false;
         }
 
-        user.setActivationCode(null);
+        user.setActivationCode(code);
         userRepository.save(user);
         return true;
 

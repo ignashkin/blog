@@ -20,11 +20,11 @@ public class User implements UserDetails {
     private String username;
     @NotBlank(message = "Пароль не может быть пустым")
     private String password;
-    @Transient
     @NotBlank(message = "Подтверждение пароля не может быть пустым")
+    @Transient
     private String password2;
     private boolean active;
-    @Email(message = "Email введне не корректно")
+    @Email(message = "Email введен не корректно")
     @NotBlank(message = "Email не может быть пустым")
     private String email;
     private String activationCode;
