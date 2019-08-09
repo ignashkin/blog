@@ -35,9 +35,14 @@ public class  UserService implements UserDetailsService {
 
     public boolean addUser(User user) {
         User userFromDb = userRepository.findByUsername(user.getUsername());
-        if (userFromDb != null) {
-            return false;
-        }
+//        if (userFromDb != null) {
+//            return false;
+//        }
+
+//        userFromDb = userRepository.findByEmail(user.getEmail());
+//        if (userFromDb != null) {
+//            return false;
+//        }
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());

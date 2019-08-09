@@ -17,15 +17,14 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotBlank(message = "Имя пользователя не должно быть пустым")
+    @Column(unique = true)
     private String username;
     @NotBlank(message = "Пароль не может быть пустым")
     private String password;
-    @NotBlank(message = "Подтверждение пароля не может быть пустым")
-    @Transient
-    private String password2;
     private boolean active;
     @Email(message = "Email введен не корректно")
     @NotBlank(message = "Email не может быть пустым")
+    @Column(unique = true)
     private String email;
     private String activationCode;
 
@@ -119,11 +118,5 @@ public class User implements UserDetails {
         this.activationCode = activetionCode;
     }
 
-    public String getPassword2() {
-        return password2;
-    }
 
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-    }
 }
