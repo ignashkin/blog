@@ -21,6 +21,7 @@ public class User implements UserDetails {
     private String username;
     @NotBlank(message = "Пароль не может быть пустым")
     private String password;
+    @Column(unique = true)
     private boolean active;
     @Email(message = "Email введен не корректно")
     @NotBlank(message = "Email не может быть пустым")

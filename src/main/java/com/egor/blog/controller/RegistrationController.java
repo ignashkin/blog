@@ -2,6 +2,7 @@ package com.egor.blog.controller;
 
 import com.egor.blog.domain.User;
 import com.egor.blog.service.UserService;
+import com.egor.blog.service.exception.UniqueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +47,14 @@ public class RegistrationController {
             return "registration";
         }
 
+            try {
+                userService.addUser(user);
+            }
+            catch (UniqueException e) {
 
-        if (!userService.addUser(user)) {
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
+            model.addAttribute(e.getField()+"Error", e.getMessage());
             return "registration";
-        }
+            }
 
         return "redirect:/login";
     }

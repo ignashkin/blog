@@ -3,6 +3,8 @@ package com.egor.blog.service;
 import com.egor.blog.domain.Role;
 import com.egor.blog.domain.User;
 import com.egor.blog.repo.UserRepository;
+import com.egor.blog.service.exception.NonUniqueEmailException;
+import com.egor.blog.service.exception.NonUniqueUsernameException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,16 +35,16 @@ public class  UserService implements UserDetailsService {
         return user;
     }
 
-    public boolean addUser(User user) {
+    public boolean addUser(User user) throws NonUniqueUsernameException, NonUniqueEmailException {
         User userFromDb = userRepository.findByUsername(user.getUsername());
-//        if (userFromDb != null) {
-//            return false;
-//        }
+        if (userFromDb != null) {
+            throw new NonUniqueUsernameException();
+        }
 
-//        userFromDb = userRepository.findByEmail(user.getEmail());
-//        if (userFromDb != null) {
-//            return false;
-//        }
+        userFromDb = userRepository.findByEmail(user.getEmail());
+        if (userFromDb != null) {
+            throw new NonUniqueEmailException();
+        }
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
@@ -122,3 +124,5 @@ public class  UserService implements UserDetailsService {
     }
 
 }
+
+
