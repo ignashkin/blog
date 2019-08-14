@@ -1,6 +1,11 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
 <@c.page>
+<#if message??>
+<div class="alert alert-success" role="alert">
+    ${message}
+</div>
+</#if>
 <div class="col-sm-8">
     <h1>Create post</h1>
     <form method="post" enctype="multipart/form-data">

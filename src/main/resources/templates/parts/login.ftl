@@ -52,13 +52,6 @@
                         </#if>
                     </div>
                     </#if>
-                    <div class="input-group">
-                        <div class="checkbox">
-                            <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                            </label>
-                        </div>
-                    </div>
                     <div style="margin-top:10px" class="form-group">
                     <!-- Button -->
                         <div class="col-sm-12 controls">

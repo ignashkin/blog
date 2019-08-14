@@ -45,7 +45,7 @@ public class  UserService implements UserDetailsService {
         if (userFromDb != null) {
             throw new NonUniqueEmailException();
         }
-        user.setActive(true);
+        //user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -74,6 +74,7 @@ public class  UserService implements UserDetailsService {
             return false;
         }
 
+        user.setActive(true);
         user.setActivationCode(code);
         userRepository.save(user);
         return true;

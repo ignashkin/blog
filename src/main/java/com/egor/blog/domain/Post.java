@@ -1,6 +1,7 @@
 package com.egor.blog.domain;
 
 import org.hibernate.annotations.Type;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -27,9 +28,9 @@ public class Post {
 
     public Post(String title, String text, String tag, User user) {
         this.author = user;
-        this.title = title;
-        this.text = text;
-        this.tag = tag;
+        this.title = HtmlUtils.htmlEscape(title);
+        this.text = HtmlUtils.htmlEscape(text);
+        this.tag = HtmlUtils.htmlEscape(tag);
     }
 
     public String getAuthorName() {
@@ -49,7 +50,7 @@ public class Post {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = HtmlUtils.htmlEscape(title);;
     }
 
     public String getText() {
@@ -57,7 +58,7 @@ public class Post {
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.text =  HtmlUtils.htmlEscape(text);
     }
 
     public String getTag() {
@@ -65,7 +66,7 @@ public class Post {
     }
 
     public void setTag(String tag) {
-        this.tag = tag;
+        this.tag =HtmlUtils.htmlEscape(tag);
     }
 
     public User getAuthor() {
