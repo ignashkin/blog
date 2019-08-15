@@ -1,6 +1,6 @@
 package com.egor.blog.domain;
 
-import org.hibernate.annotations.Type;
+import com.egor.blog.service.SlugService;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.persistence.*;
@@ -13,9 +13,10 @@ public class Post {
     private Long id;
     private String title;
     @Lob
-    @NotBlank (message = "Введите ваш текст")
+    @NotBlank(message = "Введите ваш текст")
     private String text;
     private String tag;
+    private String slug;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -50,7 +51,8 @@ public class Post {
     }
 
     public void setTitle(String title) {
-        this.title = HtmlUtils.htmlEscape(title);;
+        this.title = HtmlUtils.htmlEscape(title);
+        ;
     }
 
     public String getText() {
@@ -58,7 +60,7 @@ public class Post {
     }
 
     public void setText(String text) {
-        this.text =  HtmlUtils.htmlEscape(text);
+        this.text = HtmlUtils.htmlEscape(text);
     }
 
     public String getTag() {
@@ -66,7 +68,7 @@ public class Post {
     }
 
     public void setTag(String tag) {
-        this.tag =HtmlUtils.htmlEscape(tag);
+        this.tag = HtmlUtils.htmlEscape(tag);
     }
 
     public User getAuthor() {
@@ -83,6 +85,15 @@ public class Post {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug() {
+        SlugService slugService =  new SlugService();
+        this.slug = slugService.makeSlug(this.title) + this.id;
     }
 }
 

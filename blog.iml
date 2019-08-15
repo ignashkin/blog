@@ -83,5 +83,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.1.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.1.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.github.slugify:slugify:2.4" level="project" />
+    <orderEntry type="library" name="Maven: com.ibm.icu:icu4j:64.2" level="project" />
   </component>
 </module>
