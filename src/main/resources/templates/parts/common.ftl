@@ -18,7 +18,7 @@
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
                 <h4> Возможно тут будет навигация</h4>
-                <a class="btn btn-primary" href="/create">Create post</a>
+                <a class="btn btn-primary" href="/post/create">Create post</a>
                 <p>Я не знаю какими качествами надо обладать, что бы полюбить фронтэнд</p>
             </div>
         </div>

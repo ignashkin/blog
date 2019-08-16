@@ -13,7 +13,7 @@
         </div>
         <div  id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="/create">Create Post</a></li>
+                <li class="nav-item"><a href="/post/create">Create Post</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <#if user??>

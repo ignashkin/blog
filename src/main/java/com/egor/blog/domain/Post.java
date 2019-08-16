@@ -91,9 +91,9 @@ public class Post {
         return slug;
     }
 
-    public void setSlug() {
-        SlugService slugService =  new SlugService();
-        this.slug = slugService.makeSlug(this.title) + this.id;
+    public void setSlug(String slug) {
+
+        this.slug = slug;
     }
 }
 
