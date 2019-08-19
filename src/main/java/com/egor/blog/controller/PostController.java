@@ -3,9 +3,10 @@ package com.egor.blog.controller;
 import com.egor.blog.domain.Post;
 import com.egor.blog.domain.User;
 import com.egor.blog.repo.PostRepository;
-import com.egor.blog.service.SlugService;
+import com.egor.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,15 +26,30 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
     @Autowired
-    SlugService slugService;
+    PostService postService;
 
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping ("/{slug}")
+    @GetMapping("/{slug}")
     public String getPost(@PathVariable String slug, Model model) {
         Post post = postRepository.findBySlug(slug);
-        model.addAttribute("post",post);
+        model.addAttribute("post", post);
+        return "post";
+    }
+    @GetMapping("/{slug}/edit")
+    public String editPost(
+            @AuthenticationPrincipal User user,
+            @PathVariable String slug,
+            Model model)
+    {
+        Post post = postRepository.findBySlug(slug);
+        User author = post.getAuthor();
+        model.addAttribute("post", post);
+        if (user.getId().equals(author.getId())) {
+            return "create";
+        }
+        model.addAttribute("message","Вы не моежете редактировать данную запись,т.к. не являетесь ее автором");
         return "post";
     }
 
@@ -43,7 +59,7 @@ public class PostController {
         return "create";
     }
 
-    @PostMapping("/create")
+    @PostMapping({"/create","/{slug}/edit"})
     public String addPost(
             @AuthenticationPrincipal User user,
             @Valid Post post,
@@ -58,8 +74,6 @@ public class PostController {
             model.addAttribute("post", post);
             return "/create";
         } else {
-
-
             if (file != null && !file.getOriginalFilename().isEmpty()) {
                 File uploadDir = new File(uploadPath);
                 if (!uploadDir.exists()) {
@@ -71,10 +85,10 @@ public class PostController {
                 post.setFilename(resultFilename);
             }
             postRepository.save(post);
-            String slug = slugService.makeSlug(post.getTitle()) + "-" + post.getId();
+            String slug = postService.makeSlug(post.getTitle()) + "-" + post.getId();
             post.setSlug(slug);
             postRepository.save(post);
         }
-        return "redirect:/post/"+post.getSlug();
+        return "redirect:/post/" + post.getSlug();
     }
 }

@@ -5,6 +5,11 @@
     <h1 class="blog-title">Pet in my head</h1>
     <p class="lead blog-description">Я не знаю к чему приведет этот эксперимент..может я сумасшедший и меня закроют... Может...</p>
 </div>
+<#if message??>
+<div class="alert alert-danger" role="alert">
+    ${message}
+</div>
+</#if>
 <div class="col-sm-8 blog-main">
     <div class="blog-post">
         <a href="${post.slug}">

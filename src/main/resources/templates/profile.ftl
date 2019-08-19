@@ -19,23 +19,13 @@ ${message?ifExists}
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input id="email" type="email" class="form-control" name="email" placeholder="some@some.com" value="${email!''}" >
                     </div>
-                    <div class="input-group">
-                        <div class="checkbox">
-                            <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                            </label>
-                        </div>
-                    </div>
                     <div style="margin-top:10px" class="form-group">
                         <!-- Button -->
-
                         <div class="col-sm-12 controls">
                             <input type="submit" class="btn btn-success" value="Сохранить"/>
                         </div>
                     </div>
-
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-
                 </form>
             </div>
         </div>

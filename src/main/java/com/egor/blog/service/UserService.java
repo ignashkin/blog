@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class  UserService implements UserDetailsService {
+public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
@@ -26,6 +26,7 @@ public class  UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -45,7 +46,6 @@ public class  UserService implements UserDetailsService {
         if (userFromDb != null) {
             throw new NonUniqueEmailException();
         }
-        //user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -63,7 +63,7 @@ public class  UserService implements UserDetailsService {
                     user.getUsername(),
                     user.getActivationCode()
             );
-            mailSender.send(user.getEmail(),"registration", message);
+            mailSender.send(user.getEmail(), "registration", message);
         }
     }
 

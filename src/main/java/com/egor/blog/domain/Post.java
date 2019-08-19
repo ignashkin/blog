@@ -1,6 +1,5 @@
 package com.egor.blog.domain;
 
-import com.egor.blog.service.SlugService;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.persistence.*;
@@ -60,7 +59,8 @@ public class Post {
     }
 
     public void setText(String text) {
-        this.text = HtmlUtils.htmlEscape(text);
+        this.text = text;
+//                HtmlUtils.htmlEscape(text);
     }
 
     public String getTag() {
