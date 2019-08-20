@@ -8,4 +8,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     Post findByTag(String tag);
     @Transactional
     Post findBySlug(String slug);
+    @Transactional
+    Iterable<Post> findAllByOrderByIdDesc();
 }

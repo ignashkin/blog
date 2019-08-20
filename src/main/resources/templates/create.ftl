@@ -33,7 +33,7 @@
             <input  class="form-control" type="text" name="tag"  value="<#if post??>${post.tag} </#if>" placeholder="Тэги" />
         </div>
         <div class="form-group">
-            <button type="submit"  class="btn btn-primary"><#if post??>Добавить <#else>Сохранить</#if>Добавить</button>
+            <button type="submit"  class="btn btn-primary">Сохранить</button>
             </button>
             <button class="btn btn-default">
                 Отмена

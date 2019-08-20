@@ -21,7 +21,7 @@ public class MainController {
     }
     @GetMapping("/posts")
     public String getIndex(Map<String, Object> model) {
-        Iterable<Post> posts = postRepository.findAll();
+        Iterable<Post> posts = postRepository.findAllByOrderByIdDesc();
         model.put("posts", posts);
         return "posts";
 

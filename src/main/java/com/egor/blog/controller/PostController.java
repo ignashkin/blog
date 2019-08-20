@@ -6,7 +6,6 @@ import com.egor.blog.repo.PostRepository;
 import com.egor.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/post")
@@ -60,7 +57,7 @@ public class PostController {
     }
 
     @PostMapping({"/create","/{slug}/edit"})
-    public String addPost(
+    public String savePost(
             @AuthenticationPrincipal User user,
             @Valid Post post,
             BindingResult bindingResult,
@@ -68,27 +65,15 @@ public class PostController {
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         post.setAuthor(user);
+        String slug = post.getSlug();
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
             model.addAttribute("post", post);
             return "/create";
         } else {
-            if (file != null && !file.getOriginalFilename().isEmpty()) {
-                File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdir();
-                }
-                String uuidFile = UUID.randomUUID().toString();
-                String resultFilename = uuidFile + "." + file.getOriginalFilename();
-                file.transferTo(new File(uploadPath + "/" + resultFilename));
-                post.setFilename(resultFilename);
-            }
-            postRepository.save(post);
-            String slug = postService.makeSlug(post.getTitle()) + "-" + post.getId();
-            post.setSlug(slug);
-            postRepository.save(post);
+            slug = postService.savePost(post, file);
         }
-        return "redirect:/post/" + post.getSlug();
+        return "redirect:/post/" + slug;
     }
 }
