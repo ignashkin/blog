@@ -5,8 +5,6 @@ import com.egor.blog.repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -16,23 +14,17 @@ public class MainController {
     @Autowired
     PostRepository postRepository;
 
+
     @GetMapping("/")
+    public String getPosts() {
+        return "redirect:/posts";
+    }
+    @GetMapping("/posts")
     public String getIndex(Map<String, Object> model) {
-        Iterable<Post> posts = postRepository.findAll();
+        Iterable<Post> posts = postRepository.findAllByOrderByIdDesc();
         model.put("posts", posts);
-        return "index";
+        return "posts";
 
     }
 
-    @PostMapping("/create")
-    public String addPost(@RequestParam String title, @RequestParam String text, Map<String, Object> model) {
-        Post post = new Post(title,text);
-        postRepository.save(post);
-        return "redirect:/";
-
-    }
-    @GetMapping("/create")
-    public String getCreatePage(Map<String, Object> model) {
-                return "create";
-    }
 }
