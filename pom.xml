@@ -91,7 +91,7 @@
     <properties>
         <java.version>1.8</java.version>
 		 <docker.image.prefix>ignashkin</docker.image.prefix>
-		 
+		 <project.build.finalName>blog-1.0-SNAPSHOT</project.build.finalName>
     </properties>
 
 
