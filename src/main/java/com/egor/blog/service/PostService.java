@@ -1,7 +1,6 @@
 package com.egor.blog.service;
 
 import com.egor.blog.domain.Post;
-import com.egor.blog.domain.User;
 import com.egor.blog.repo.PostRepository;
 import com.github.slugify.Slugify;
 import com.ibm.icu.text.Transliterator;
@@ -12,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

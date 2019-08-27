@@ -34,29 +34,28 @@ public class PostController {
         model.addAttribute("post", post);
         return "post";
     }
+
     @GetMapping("/{slug}/edit")
     public String editPost(
             @AuthenticationPrincipal User user,
             @PathVariable String slug,
-            Model model)
-    {
+            Model model) {
         Post post = postRepository.findBySlug(slug);
         User author = post.getAuthor();
         model.addAttribute("post", post);
         if (user.getId().equals(author.getId())) {
             return "create";
         }
-        model.addAttribute("message","Вы не моежете редактировать данную запись,т.к. не являетесь ее автором");
+        model.addAttribute("message", "Вы не моежете редактировать данную запись,т.к. не являетесь ее автором");
         return "post";
     }
-
 
     @GetMapping("/create")
     public String getCreatePage(Map<String, Object> model) {
         return "create";
     }
 
-    @PostMapping({"/create","/{slug}/edit"})
+    @PostMapping({"/create", "/{slug}/edit"})
     public String savePost(
             @AuthenticationPrincipal User user,
             @Valid Post post,
