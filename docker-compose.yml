@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+     - /home/ignat/blogData/db:/var/lib/postgresql/data
+    environment:
+        POSTGRES_PASSWORD: root
+        POSTGRES_DB: blog
+
+  blog:
+    image: ignashkin/blog
+    restart: always
+    volumes:
+      - /home/ignat/blogData/uploads:/home/ignat/blogData/uploads
+    ports:
+      - 8080:8080
+    depends_on: 
+      - db
