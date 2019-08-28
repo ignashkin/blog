@@ -90,7 +90,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <docker.image.prefix>ignashkin</docker.image.prefix>
+        <docker.image.prefix>nakhay</docker.image.prefix>
     </properties>
     <build>
         <plugins>
