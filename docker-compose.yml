@@ -15,7 +15,7 @@ services:
     restart: always
     volumes:
       - /home/ignat/blogData/uploads:/home/ignat/blogData/uploads
-	  - /home/ignat/dev/blog-deploy/application.properties:/opt/application.properties
+      - /home/ignat/dev/blog-deploy/application.properties:/opt/application.properties
     ports:
       - 8080:8080
     depends_on: 
