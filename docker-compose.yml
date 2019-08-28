@@ -11,7 +11,7 @@ services:
         POSTGRES_DB: blog
 
   blog:
-    image: ignashkin/blog
+    image: nakhay/blog
     restart: always
     volumes:
       - /home/ignat/blogData/uploads:/home/ignat/blogData/uploads
